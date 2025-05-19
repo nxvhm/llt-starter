@@ -1,0 +1,5 @@
+app/vendor
+mariadb/*
+sql/*.*
+src/vendor
+src/.env
