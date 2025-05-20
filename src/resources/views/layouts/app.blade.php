@@ -6,8 +6,27 @@
 	@livewireStyles
 </head>
 <body>
-	{{ $slot }}
+	<div class="page">
+		{{--  BEGIN SIDEBAR  --}}
+		<aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+			@include('livewire.main.sidebar')
+		</aside>
+		{{-- END SIDEBAR --}}
+
+		<div class="page-wrapper">
+			{{-- BEGIN PAGE HEADER --}}
+			@include('livewire.main.header')
+			{{-- END PAGE HEADER --}}
+
+			{{-- BEGIN PAGE BODY --}}
+			<div class="page-body">
+				{{ $slot }}
+			</div>
+			{{-- END PAGE BODY --}}
+		</div>
+	</div>
 	@livewireScripts
+	@vite(['resources/css/app.css', 'resources/js/app.js'])
 	@stack('scripts')
 </body>
 </html>
