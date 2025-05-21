@@ -24,5 +24,10 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  redis:
+    image: redis:8.0.1-alpine
+    restart: on-failure
+    ports:
+      - 63790:6379
 networks:
   nginx-postgresql-laravel: {}
