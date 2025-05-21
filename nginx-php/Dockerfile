@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine3.20
+FROM php:8.3-fpm-alpine
 
 ARG APP_NAME
 ARG POSTGRES_PASSWORD
@@ -15,6 +15,7 @@ RUN apk update && apk upgrade &&\
 	wget \
 	supervisor \
 	curl \
+	curl-dev \
 	nginx \
 	libcurl \
 	libpq \
@@ -49,7 +50,18 @@ RUN apk add --no-cache --virtual .sys-deps \
 		--with-freetype \
 		--with-jpeg && \
 	docker-php-ext-install gd && \
-	docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip && \
+	docker-php-ext-install pdo_mysql && \
+	docker-php-ext-install mysqli && \
+	docker-php-ext-install pdo_sqlite && \
+	docker-php-ext-install pgsql && \
+	docker-php-ext-install pdo_pgsql && \
+	docker-php-ext-install exif && \
+	docker-php-ext-install intl && \
+	docker-php-ext-install xsl && \
+	docker-php-ext-install soap && \
+	docker-php-ext-install zip && \
+	docker-php-ext-install curl && \
+	docker-php-ext-install dom && \
 	mkdir -p /var/www/app && \
 	mkdir -p /var/log/supervisor && \
 	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -59,6 +71,8 @@ RUN apk add --no-cache --virtual .sys-deps \
 RUN apk add --no-cache --virtual .build-deps php83-dev && \
   pecl install xdebug && \
   docker-php-ext-enable xdebug && \
+	pecl install redis && \
+	docker-php-ext-enable redis && \
   apk del .build-deps && \
 	apk del gcc linux-headers make autoconf && \
 	apk del .sys-deps
