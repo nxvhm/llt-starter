@@ -8,6 +8,17 @@ if(!function_exists('user')) {
 	}
 }
 
+if(!function_exists('main')) {
+	function main(): \App\Lib\Managers\Main {
+		return app()->make(\App\Lib\Managers\Main::class);
+	}
+}
+if(!function_exists('userManager')) {
+	function userManager(): \App\Lib\Managers\UserManager {
+		return app()->make(\App\Lib\Managers\Main::class)->getUserManager();
+	}
+}
+
 if(!function_exists('prev_page')) {
 	function prev_page(string $default = '/'): string {
 		return request()->header('Referer') ?? $default;
