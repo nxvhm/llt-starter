@@ -9,13 +9,13 @@
 	<div class="page">
 		{{--  BEGIN SIDEBAR  --}}
 		<aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
-			@include('livewire.main.sidebar')
+			<livewire:main.sidebar />
 		</aside>
 		{{-- END SIDEBAR --}}
 
 		<div class="page-wrapper">
 			{{-- BEGIN PAGE HEADER --}}
-			@include('livewire.main.header')
+			<livewire:main.header />
 			{{-- END PAGE HEADER --}}
 
 			{{-- BEGIN PAGE BODY --}}
