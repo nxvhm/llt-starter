@@ -19,4 +19,14 @@ enum Status: string {
 		];
 	}
 
+	public static function userStatuses(): array {
+		return [
+			self::ACTIVE->value => self::ACTIVE->value,
+			self::INACTIVE->value => self::INACTIVE->value,
+			self::PENDING->value => self::PENDING->value,
+			self::DISABLED->value => self::DISABLED->value,
+			self::CLOSED->value => self::CLOSED->value,
+		];
+	}
+
 }
