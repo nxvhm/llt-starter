@@ -30,7 +30,9 @@ class ModifyPage extends BaseComponent {
 	public function save() {
 		$this->form->validate();
 		try {
-			dd($this->form->all());
+			$user = userManager()->saveUser($this->form);
+			$this->dispatchSaveSuccess();
+			return $this->redirectRoute('users.index');
 		} catch (HttpException $he) {
 			$msg = $he->getMessage() ?? trans('error');
 			$this->httpError($he->getStatusCode(), $msg);

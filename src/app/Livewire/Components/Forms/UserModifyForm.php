@@ -7,7 +7,10 @@ use Livewire\Attributes\Validate;
 use App\Models\User;
 
 class UserModifyForm extends Form {
-	#[Validate('required|email')]
+
+	public ?int $id = null;
+
+	#[Validate('required|email|unique:users')]
 	public $email = '';
 
 	#[Validate('required|min:5')]
@@ -19,7 +22,11 @@ class UserModifyForm extends Form {
 	#[Validate('required|min:5')]
 	public $confirm_password = '';
 
-	public function store() {
-		dd($this->all());
+	#[Validate('required|string')]
+	public $status;
+
+	public function setId(int $id): self {
+		$this->id = $id;
+		return $this;
 	}
 }

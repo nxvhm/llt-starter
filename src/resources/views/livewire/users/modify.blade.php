@@ -46,6 +46,7 @@
 					</div>
 					<div>
 						<select name="status" id="status" class="form-control" wire:model="form.status">
+							<option value=""></option>
 							@foreach($statuses as $status)
 								<option value="{{$status}}">{{$status}}</option>
 							@endforeach

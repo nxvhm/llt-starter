@@ -2,6 +2,7 @@
 
 namespace App\Lib\Managers;
 
+use App\Livewire\Components\Forms\UserModifyForm;
 use Illuminate\Database\Eloquent\{Builder, Collection};
 use Illuminate\Support\Facades\{Gate, DB, Cache, Storage, Hash, Log};
 use App\Models\User;
@@ -53,5 +54,20 @@ class UserManager {
 			return $asQuery ? $usersQ : $usersQ->get();
 
 		return $asQuery ? $usersQ : $usersQ->get();
+	}
+
+	public function saveUser(UserModifyForm $form): User {
+		if(!empty($form->id))
+			$user = User::find($form->id);
+
+		$user = $user ?? new User;
+		$user->name = $form->name;
+		$user->email = $form->email;
+		$user->password = Hash::make($form->password);
+		$user->status = $form->status;
+		$user->save();
+		$user->assignRole(Roles::USER);
+
+		return $user;
 	}
 }
