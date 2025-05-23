@@ -16,4 +16,5 @@ enum Permissions: string {
 	case CATEGORY_EDIT = 'category-edit';
 
 	case USERS_VIEW = 'users-view';
+	case USERS_CREATE = 'users-create';
 }

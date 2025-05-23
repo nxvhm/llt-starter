@@ -16,5 +16,7 @@ class Gates {
 
 			return $user->hasPermissionTo(Permissions::USERS_VIEW);
 		});
+
+		Gate::define('users-create', fn(User $user) => $user->hasRole(Roles::ADMIN->value) || $user->hasPermissionTo(Permissions::USERS_CREATE));
 	}
 }
