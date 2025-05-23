@@ -12,6 +12,8 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
-        "@tabler/icons-webfont": "^3.33.0"
+        "@tabler/icons-webfont": "^3.33.0",
+        "sweetalert2": "^11.21.2",
+        "toastify-js": "^1.12.0"
     }
 }
