@@ -17,7 +17,7 @@
 	    <ul class="navbar-nav pt-lg-3">
 				@foreach($navigation as $item)
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="{{$item['url'] ?? '#'}}" class="nav-link" wire:navigate>
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
 								<i class="{{$item['icon']}}"></i>
 							</span>
