@@ -60,6 +60,12 @@ use App\Lib\LivewireEvents;
 										<i class="icon dropdown-item-icon ti ti-edit"></i>
 										Edit
 									</a>
+									@can('users-permissions-modify')
+									<a class="dropdown-item" href="{{route('users.modify.permissions', ['id' => $user->id])}}">
+										<i class="icon dropdown-item-icon ti ti-lock-code"></i>
+										{{trans_choice('permission', 2)}}
+									</a>
+									@endcan
 									@can('users-delete')
 									<a class="dropdown-item text-red" href="#" x-on:click="confirmWithDispatch({
 										title: '{{__('warning')}}',

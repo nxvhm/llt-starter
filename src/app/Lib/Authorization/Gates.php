@@ -18,7 +18,8 @@ class Gates {
 		});
 
 		Gate::define('users-create', fn(User $user) => $user->hasRole(Roles::ADMIN->value) || $user->hasPermissionTo(Permissions::USERS_CREATE));
-
 		Gate::define('users-delete', fn(User $user) => $user->hasRole(Roles::ADMIN->value));
+		Gate::define('users-permissions-modify', fn(User $user) => $user->hasRole(Roles::ADMIN->value));
+		Gate::define('users-profile-modify', fn(User $user) => $user->hasRole(Roles::ADMIN->value));
 	}
 }
