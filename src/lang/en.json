@@ -396,5 +396,6 @@
 		"language": "language",
 		"latest_named": "Latest :name",
 		"add_item_to_subject": "Add :item to :subject",
-		"standalone": "Standalone"
+		"standalone": "Standalone",
+		"delete_admin_error": "You are not allowed to delete administrator accounts"
 }
