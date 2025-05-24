@@ -1,3 +1,6 @@
+@php
+use App\Lib\LivewireEvents;
+@endphp
 <div class="container">
 @section('pageHeaderButtonsList')
 	@can('users-create')
@@ -48,18 +51,28 @@
 						<td>{{date('d M Y H:i:s', strtotime($user->created_at))}}</td>
 						<td>
 							<div class="dropdown">
-								<a href="#" class="btn dropdown-toggle" data-boundary="window" data-bs-toggle="dropdown">Open
-									dropdown</a>
+								<a href="#" class="btn dropdown-toggle" data-boundary="window" data-bs-toggle="dropdown">
+									<i class="icon ti ti-settings"></i>
+								</a>
 								<div class="dropdown-menu">
-									<span class="dropdown-header">Dropdown header</span>
+									<span class="dropdown-header">{{__('user') .' '. __('settings')}}</span>
 									<a class="dropdown-item" href="#">
 										<i class="icon dropdown-item-icon ti ti-edit"></i>
 										Edit
 									</a>
-									<a class="dropdown-item" href="#">
-										<i class="icon dropdown-item-icon ti ti-pencil"></i>
-										Another Edit
+									@can('users-delete')
+									<a class="dropdown-item text-red" href="#" x-on:click="confirmWithDispatch({
+										title: '{{__('warning')}}',
+										html: '{{__('actions.confirm_item_delete')}}',
+										confirmButtonText: '{{__('actions.confirm')}}',
+										cancelButtonText: '{{__('actions.cancel')}}',
+										event: '{{LivewireEvents::USER_DELETE}}',
+										eventParams: {id: {{$user->id}}}
+									})">
+										<i class="icon dropdown-item-icon ti ti-trash"></i>
+										Delete
 									</a>
+									@endcan
 								</div>
 							</div>
 						</td>
