@@ -11,6 +11,9 @@
       <div class="card card-md">
         <div class="card-body">
           <h2 class="h2 text-center mb-4">Login to your account</h2>
+						@if(!empty($error))
+							<p class="alert alert-danger">{{$error}}</p>
+						@endif
           <form wire:submit="requestLogin">
             <div class="mb-3">
               <label class="form-label">Email address</label>
