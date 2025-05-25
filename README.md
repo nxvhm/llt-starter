@@ -36,8 +36,8 @@ vite build
 There are few seeders we need to run in order to have some initial data setup.
 
 ### Roles, Permissions and Authorization
-The application roles are located at: `src\app\Models\Enums\Roles.php`. 
-The application permissions are located at: `src\app\Models\Enums\Permissions.php`.
+The application roles are located at: `src\app\Models\Enums\Roles.php`.        
+The application permissions are located at: `src\app\Models\Enums\Permissions.php`.            
 Currently the permissions are not attached to any role, since this is a starter template.
 
 When adding/removing new role or permission, modify the above enums respectively and run the seeder.
@@ -56,7 +56,8 @@ docker-compose exec -i nginx-php bash -c "php artisan db:seed --class=UserSeeder
 
 ## Visibility
 
-You can view the project from `http://localhost:5500` or `https://localhost:5543`. To change the ports edit docker-compose file. 
+You can view the project from `http://localhost:5500` or `https://localhost:5543`.              
+To change the ports edit docker-compose file. 
 Your postgreSQL is available at `127.0.0.1:54320`.
 
 ### Refresh Self Signed SSL
