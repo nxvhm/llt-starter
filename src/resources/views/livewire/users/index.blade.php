@@ -2,6 +2,7 @@
 use App\Lib\LivewireEvents;
 @endphp
 <div class="container">
+@include('livewire.main.loader')
 @section('pageHeaderButtonsList')
 	@can('users-create')
 	<a href="{{route('users.create')}}" class="btn btn-primary btn-5 d-none d-sm-inline-block" wire:navigate>
@@ -56,12 +57,12 @@ use App\Lib\LivewireEvents;
 								</a>
 								<div class="dropdown-menu">
 									<span class="dropdown-header">{{__('user') .' '. __('settings')}}</span>
-									<a class="dropdown-item" href="#">
+									<a class="dropdown-item" href="{{route('users.modify', ['id' => $user->id])}}">
 										<i class="icon dropdown-item-icon ti ti-edit"></i>
 										Edit
 									</a>
 									@can('users-permissions-modify')
-									<a class="dropdown-item" href="{{route('users.modify.permissions', ['id' => $user->id])}}">
+									<a class="dropdown-item" href="{{route('users.modify.permissions', ['id' => $user->id])}}" wire:navigate>
 										<i class="icon dropdown-item-icon ti ti-lock-code"></i>
 										{{trans_choice('permission', 2)}}
 									</a>

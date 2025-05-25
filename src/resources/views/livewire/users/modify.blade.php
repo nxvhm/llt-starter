@@ -1,4 +1,5 @@
 <div class="container">
+@include('livewire.main.loader')
 <livewire:components.page-header title="Users" subtitle="Create New User" />
 <div class="row mt-3">
 	<div class="col-12 col-lg-8">
