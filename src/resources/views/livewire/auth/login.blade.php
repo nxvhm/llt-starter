@@ -4,7 +4,7 @@
       <div class="text-center mb-4">
         <!-- BEGIN NAVBAR LOGO -->
         <a href="." aria-label="Tabler" class="navbar-brand navbar-brand-autodark">
-					<img src="/assets/img/logo-blue.png" alt="" width="180px">
+					<img src="/assets/img/llt-logo-blue.png" alt="" width="180px">
         </a>
         <!-- END NAVBAR LOGO -->
       </div>

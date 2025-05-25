@@ -7,7 +7,7 @@
 	  <!-- BEGIN NAVBAR LOGO -->
 	  <div class="navbar-brand navbar-brand-autodark">
 	    <a href="{{route('home')}}" aria-label="Tabler" wire:navigate>
-				<img src="/assets/img/logo.png" alt="" width="180px">
+				<img src="/assets/img/llt-logo.png" alt="" width="180px">
 	    </a>
 	  </div>
 	  <!-- END NAVBAR LOGO -->
