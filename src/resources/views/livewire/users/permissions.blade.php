@@ -3,8 +3,9 @@ use App\Lib\LivewireEvents;
 use Illuminate\Support\Str;
 @endphp
 <div class="container" x-data="permissionsPage">
+	@include('livewire.main.loader')
 	@section('pageHeaderButtonsList')
-		<a href="{{route('users.index')}}" class="btn btn-1">
+		<a href="{{route('users.index')}}" class="btn btn-1" wire:navigate>
 			<i class="icon ti ti-arrow-left"></i>
 			{{__('actions.back')}}
 		</a>
@@ -50,10 +51,9 @@ Alpine.data('permissionsPage', () => ({
 	if(!permissionCheckboxElement)
 		return false;
 
-		{{-- Livewire.dispatch('update-user-permission', {
+		Livewire.dispatch('{{LivewireEvents::USERS_PERMISSION_TOGGLE}}', {
 			name: permissionName,
-			check: permissionCheckboxElement.checked
-		}); --}}
+		});
 },
 }));
 </script>
