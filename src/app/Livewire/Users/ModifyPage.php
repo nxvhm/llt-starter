@@ -20,6 +20,7 @@ class ModifyPage extends BaseComponent {
 		if(!$this->isAuthorized())
 			abort(403);
 
+		$this->setUserToModify($id);
 		$this->statuses = Status::userStatuses();
 	}
 
@@ -27,12 +28,27 @@ class ModifyPage extends BaseComponent {
 		return view('livewire.users.modify');
 	}
 
+	public function setUserToModify(?int $id) {
+		if(empty($id))
+			return;
+
+		if(empty($this->user = User::find($id)))
+			abort(404);
+
+		$attributes = $this->user->getAttributes();
+		unset($attributes['password']);
+		$this->form->fill($attributes);
+	}
+
 	public function save() {
 		$this->form->validate();
 		try {
 			$user = userManager()->saveUser($this->form);
 			$this->dispatchSaveSuccess();
-			return $this->redirectRoute('users.index');
+			return empty($this->user)
+				? $this->redirectRoute('users.modify.permissions', ['id' => $user->id])
+				: $this->redirectRoute('users.index');
+
 		} catch (HttpException $he) {
 			$msg = $he->getMessage() ?? trans('error');
 			$this->httpError($he->getStatusCode(), $msg);

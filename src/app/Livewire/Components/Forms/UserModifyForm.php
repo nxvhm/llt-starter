@@ -4,25 +4,33 @@ namespace App\Livewire\Components\Forms;
 
 use Livewire\Form;
 use Livewire\Attributes\Validate;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 
 class UserModifyForm extends Form {
 
 	public ?int $id = null;
 
-	#[Validate('required|email|unique:users')]
+	public function rules() {
+		return [
+			'email' => ['required', 'email', Rule::unique('users')->ignore($this->id)],
+			'name' => 'required|min:5',
+			'password' => ['nullable', 'required_without:id', 'min:5', 'confirmed:confirm_password'],
+			'confirm_password' => 'required_with:password|min:5',
+			'status' => 'required|string'
+		];
+	}
+
+	public function messages() {
+		return [
+			'password.required_without' => trans('validation.required_without', ['attribute' => trans('validation.attributes.password'), 'values' => trans('user')])
+		];
+	}
+
 	public $email = '';
-
-	#[Validate('required|min:5')]
 	public $name = '';
-
-	#[Validate('required|min:5|confirmed:confirm_password')]
 	public $password = '';
-
-	#[Validate('required|min:5')]
 	public $confirm_password = '';
-
-	#[Validate('required|string')]
 	public $status;
 
 	public function setId(int $id): self {

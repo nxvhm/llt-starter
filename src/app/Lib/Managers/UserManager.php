@@ -63,8 +63,11 @@ class UserManager {
 		$user = $user ?? new User;
 		$user->name = $form->name;
 		$user->email = $form->email;
-		$user->password = Hash::make($form->password);
 		$user->status = $form->status;
+
+		if(!empty($form->password))
+			$user->password = Hash::make($form->password);
+
 		$user->save();
 		$user->assignRole(Roles::USER);
 
